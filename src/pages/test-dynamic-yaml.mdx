@@ -1,0 +1,69 @@
+---
+title: "Testing Dynamic YAML Table Plugin"
+pubDate: 2025-01-15
+description:
+  "Test file for the updated remark YAML table plugin with dynamic headers"
+author: "Test Author"
+image:
+  url: "https://images.unsplash.com/photo-1617275249641-322ed29f098e?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  alt: "Test image"
+---
+
+# Dynamic YAML Table Plugin Test
+
+## Example 1: Original Particle Structure
+
+```yaml
+- particle: lah
+  explanation: Used to strengthen statements
+  examples: "Let's go lah!"
+
+- particle: leh
+  explanation: Expresses mild surprise
+  examples: "Ok leh, that's good"
+```
+
+## Example 2: Different Structure - Study Methods
+
+```yaml
+- method: flashcards
+  effectiveness: high
+  time_required: 30 minutes
+  difficulty: easy
+
+- method: practice_tests
+  effectiveness: very high
+  time_required: 60 minutes
+  difficulty: medium
+```
+
+## Example 3: Simple Two-Column Structure
+
+```yaml
+- term: syntax
+  definition: The arrangement of words in a sentence
+
+- term: semantics
+  definition: The meaning of words and phrases
+
+- term: pragmatics
+  definition: The use of language in context
+```
+
+## Example 4: Should NOT Convert (inconsistent structure)
+
+```yaml
+- name: John
+  age: 25
+
+- name: Jane
+  age: 30
+  city: Singapore
+```
+
+## Example 5: Should NOT Convert (not array of objects)
+
+```yaml
+title: "My Document"
+author: "John Doe"
+```
