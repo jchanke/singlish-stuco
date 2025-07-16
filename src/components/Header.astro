@@ -1,13 +1,101 @@
 ---
-import Hamburger from "./Hamburger.astro";
-import Navigation from "./Navigation.astro";
-import ThemeIcon from "./ThemeIcon.astro";
 ---
 
-<header>
-  <nav>
-    <Hamburger />
-    <ThemeIcon />
-    <Navigation />
-  </nav>
-</header>
+<nav class="external" id="external-nav">
+  {/* <Hamburger /> */}
+  {/* <ThemeIcon /> */}
+  <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/about/">About</a>
+    </li>
+    <li>
+      <a href="/lessons">Lessons</a>
+    </li>
+    <li>
+      <a href="/blog/">Blog</a>
+    </li>
+    <li>
+      <a href="/tags/">Tags</a>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  /**
+   * External navigation bar's hide-on-scroll effect.
+   * 
+   * This script implements a smart navigation bar that hides when scrolling down
+   * and shows when scrolling up, creating a more immersive reading experience.
+   * 
+   * Adapted from code for cpu.land, by kognise & Hack Club.
+   * Source: https://github.com/hackclub/putting-the-you-in-cpu/blob/main/src/components/ExternalNav.astro
+   */
+
+  const externalNav: HTMLElement = document.querySelector('#external-nav')!
+
+  // Configuration thresholds for showing/hiding behavior (in pixels)
+  const showThreshold = 80  // How far to scroll up before showing nav
+  const hideThreshold = 80  // How far to scroll down before hiding nav
+
+  // Track current visibility state of the navigation
+  let visible = true
+
+  /**
+   * Adds scroll-based hide/show functionality to the navigation bar
+   * @param scroller - The element to monitor for scroll position changes
+   * @param eventSource - The element to attach scroll listeners to (defaults to scroller)
+   */
+  function addNavScrollHider(scroller: HTMLElement, eventSource: Window | HTMLElement = scroller) {
+    // Track the farthest scroll position to determine scroll direction and momentum
+    let farthestPoint = scroller.scrollTop
+
+    eventSource.addEventListener('scroll', () => {
+      if (visible) {
+        // When nav is visible, track the minimum (highest) scroll position
+        // This helps detect when user starts scrolling down
+        farthestPoint = Math.min(farthestPoint, scroller.scrollTop)
+
+        // Check if user has scrolled down far enough to trigger hiding
+        if (scroller.scrollTop - farthestPoint > hideThreshold) {
+          // We scrolled down past the threshold - hide the nav
+          farthestPoint = scroller.scrollTop
+          // Slide nav up and out of view using CSS transform
+          externalNav.style.transform = "translateY(-100%)"
+          visible = false
+        }
+      } else if (!visible) {
+        // When nav is hidden, track the maximum (lowest) scroll position
+        // This helps detect when user starts scrolling up
+        farthestPoint = Math.max(farthestPoint, scroller.scrollTop)
+
+        // Check if user has scrolled up far enough to trigger showing
+        if (scroller.scrollTop - farthestPoint < -showThreshold) {
+          // We scrolled up past the threshold - show the nav
+          console.log('Showing external nav')
+          farthestPoint = scroller.scrollTop
+          // Slide nav back into view by resetting transform
+          externalNav.style.transform = "translateY(0)"
+          visible = true
+        }
+      }
+    }, { passive: true }) // Passive listener for better scroll performance
+  }
+
+  // Only initialize scroll behavior if not explicitly disabled
+  // This flag allows for compatibility with different page configurations
+  /* @ts-ignore-line */
+  if (!window.__CPU_EXTERNAL_NAV_NOSCRIPT__) {
+    // Set up scroll listeners on multiple elements for better responsiveness
+    // This ensures the nav works regardless of which element is actually scrolling
+    
+    // Monitor the main content area for scroll events
+    addNavScrollHider(document.querySelector('main')!)
+    
+    // Also monitor the entire document/window for scroll events
+    // This provides redundancy for different responsive layouts
+    addNavScrollHider(document.documentElement, window)
+  }
+</script>

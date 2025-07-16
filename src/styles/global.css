@@ -1,202 +1,413 @@
-/* html {
-  background-color: #f1f5f9;
-  font-family: sans-serif;
-} */
+/**
+ * Adapted from code from cpu.land, designed by kognise and Hack Club.
+ * Source: https://github.com/hackclub/putting-the-you-in-cpu/blob/main/src/styles/global.css
+ */
+@import "./tables.css";
+
+:root {
+  --font-serif: "IBM Plex Serif", serif;
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-main-title: "Phantom Sans", "IBM Plex Serif", serif;
+
+  --toc-width: 0px; /* disable TOC unless we're viewing a lesson */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* defaults */
+html {
+  background: #f8f9fa;
+  font-size: 1.1rem;
+  font-family: var(--font-serif);
+  overflow-wrap: break-word;
+  line-height: 1.8;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 80ch;
-  padding: 1rem;
-  line-height: 1.5;
-}
-
-/* * {
-  box-sizing: border-box;
-} */
-
-h1 {
-  margin: 1rem 0;
-  font-size: 2.5rem;
-}
-
-/* nav styles */
-
-/* .hamburger {
-  padding-right: 20px;
-  cursor: pointer;
-}
-
-.hamburger .line {
-  display: block;
-  width: 40px;
-  height: 5px;
-  margin-bottom: 10px;
-  background-color: #ff9776;
-}
-
-.nav-links {
-  width: 100%;
-  top: 5rem;
-  left: 48px;
-  background-color: #ff9776;
-  display: none;
   margin: 0;
 }
 
-.nav-links a {
+img,
+video,
+iframe {
+  width: 100%;
+  height: auto;
   display: block;
-  text-align: center;
-  padding: 10px 0;
+}
+
+h1 {
+  font-size: 1em;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1em;
+  line-height: 1;
+}
+
+h3 {
+  font-size: 1em;
+  line-height: 1;
+}
+
+/* p,
+ul:not(li ul),
+ol:not(li ol),
+pre,
+.code-block {
+  margin: 20px 0;
+} */
+
+/* blockquote {
+  background: #e9ecef;
+  border-left: 4px solid #868e96;
+  margin: 30px 0;
+  padding: 10px 20px;
+  padding-left: 30px;
+
+  & p,
+  & ul:not(li ul),
+  & ol:not(li ol) {
+    margin: 14px 0;
+  }
+} */
+
+a {
+  --color: #6741d9;
+  --hover-background: #e5dbff;
+
+  color: var(--color);
+
+  /* remove underline */
   text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
+
+  /** 
+   * display a --hover-background colored bounding box; and and leave some room 
+   * around the sides!
+   */
+  &:hover {
+    padding: 0 2px;
+    margin: 0 -2px;
+    background: var(--hover-background);
+  }
+
+  &:not([href^="\#"]):visited {
+    --color: #9c36b5;
+    --hover-background: #f3d9fa;
+  }
 }
 
-.nav-links a:hover,
-a:focus {
-  background-color: #ff9776;
+/* hr {
+  border: none;
+  height: 1px;
+  background: #ced4da;
+  border: none;
+  margin: 40px 0;
+} */
+
+/* .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+} */
+
+/* .big {
+  --max-width: 1300px;
+  --width: calc(
+    max(min(100vw - var(--toc-width) - 50px, var(--max-width)), 100%)
+  );
+  width: var(--width);
+  position: relative;
+  left: calc((100% - var(--width)) / 2);
+  margin: 40px auto;
+} */
+
+/* .scroll-padding {
+  padding-top: 60vh;
+  padding-bottom: 20px;
+  font-size: 0.9em;
+  text-align: center;
+  color: #adb5bd;
+  line-height: 1.5;
+
+  & p {
+    margin: 6px 0;
+  }
+
+  & p:not(:first-child):not(:last-child) {
+    font-style: italic;
+  }
+
+  & a {
+    --color: #b197fc;
+  }
+
+  & a:not([href^="#"]):visited {
+    --color: #da77f2;
+  }
+
+  & hr {
+    margin: 16px 0;
+  }
+} */
+
+.content {
+  width: 100%;
+  max-width: 700px;
+  padding: 10px;
 }
 
-.expanded {
-  display: unset;
-}
+/* summary {
+  cursor: default;
 
-@media screen and (min-width: 636px) {
-  .nav-links {
-    margin-left: 5em;
+  &:hover {
+    color: #6741d9;
+  }
+} */
+
+/* .continue {
+  --color: #000000;
+  --hover-background: transparent;
+  border-top: 2px solid #ced4da;
+  border-bottom: 2px solid #ced4da;
+  padding: 8px 16px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 40px;
+  display: block;
+  width: fit-content;
+  font-style: italic;
+
+  &:hover {
+    border-color: #845ef7;
+  }
+} */
+
+/* navbar between pages */
+nav.external {
+  font-size: 0.95em;
+  background: #f8f9fa;
+
+  /* fixed at the top (so it's not a flex-item) and 100% of the width */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  transform: translateY(0); /* modified (on the 'scroll' action) to hide it */
+  transition: transform 180ms ease-out;
+  z-index: 99;
+
+  & ul {
+    padding: 0;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+
+    &:hover li {
+      opacity: 1 !important;
+    }
+  }
+
+  & li {
+    position: relative;
+    transition: opacity 200ms ease-in-out;
+
+    &.active::after {
+      content: "";
+      position: absolute;
+      top: calc(100% - 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      border: 5px solid transparent;
+      border-bottom-color: #fa5252;
+    }
+  }
+
+  & a,
+  & a:not([href^="\#"]):visited {
+    --color: currentColor;
+    --hover-background: #dee2e6;
     display: block;
-    position: static;
-    width: auto;
-    background: none;
+    text-align: center;
+    line-height: 1.4;
+    padding: 2px 6px;
+
+    & .chapter {
+      font-size: 0.8em;
+      font-weight: 400;
+      color: #868e96;
+    }
+  }
+}
+
+/* .edit-button {
+  --color: #adb5bd;
+  --hover-background: #e9ecef;
+  vertical-align: baseline;
+  padding: 0 3px;
+  margin-left: 4px;
+  font-size: 0.95rem;
+  font-weight: normal;
+
+  &:hover {
+    color: #868e96;
+  }
+} */
+
+@media (max-width: 720px) {
+  .old-nav {
+    display: block;
   }
 
-  .nav-links a {
-    display: inline-block;
-    padding: 15px 20px;
-  }
-
-  .hamburger {
+  .md-hide {
     display: none;
   }
 }
 
-html.dark {
-  background-color: #0d0950;
-  color: #fff;
+@media (max-width: 420px) {
+  .sm-hide {
+    display: none;
+  }
 }
 
-.dark .nav-links a {
-  color: #fff;
-} */
-
-/* table styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 0.9rem;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
+/* background color of seleected text */
+::selection {
+  background: #adb5bd9b;
 }
 
-table thead {
-  background-color: #f8f9fa;
-  border-bottom: 2px solid #dee2e6;
-}
+/* .orpheus-flag {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  display: block;
+  width: 140px;
+  transform-origin: top left;
+  z-index: 999;
 
-table th {
-  padding: 12px 15px;
-  text-align: left;
-  font-weight: 600;
-  color: #333;
-  border-right: 1px solid #dee2e6;
-}
-
-table th:last-child {
-  border-right: none;
-}
-
-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #dee2e6;
-  border-right: 1px solid #dee2e6;
-  vertical-align: top;
-}
-
-table td:last-child {
-  border-right: none;
-}
-
-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-table tbody tr:hover {
-  background-color: #f8f9fa;
-}
-
-/* Style for formatted text withintable cells */
-table .numbered-item {
-  margin: 0.5rem 0;
-  padding-left: 0rem; /* 1rem; */
-}
-
-table .dialogue-speaker {
-  font-weight: 600;
-  color: #0066cc;
-  margin: 0.25rem 0;
-}
-
-table .bullet-item {
-  margin: 0.25rem 0;
-  padding-left: 1rem;
-}
-
-table .text-line {
-  margin: 0.25rem 0;
-  line-height: 1.4;
-}
-
-/* Dark mode styles */
-/* html.dark table {
-  background-color: #1a1a1a;
-  color: #fff;
-}
-
-html.dark table thead {
-  background-color: #2d2d2d;
-  border-bottom-color: #444;
-}
-
-html.dark table th {
-  color: #fff;
-  border-right-color: #444;
-}
-
-html.dark table td {
-  border-bottom-color: #444;
-  border-right-color: #444;
-}
-
-html.dark table tbody tr:hover {
-  background-color: #2d2d2d;
-}
-
-html.dark table .dialogue-speaker {
-  color: #66b3ff;
-}
-
-/* Responsive design */
-@media screen and (max-width: 768px) {
-  table {
-    font-size: 0.8rem;
+  & img {
+    width: 100%;
   }
 
-  table th,
-  table td {
-    padding: 8px 10px;
+  &:hover {
+    background: none;
+    animation: orpheus-flag-wave 0.5s linear infinite alternate;
+  }
+}
+
+@keyframes orpheus-flag-wave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-5deg);
+  }
+} */
+
+@page {
+  size: auto;
+  margin: 0.8in;
+}
+
+@media print {
+  html {
+    background: #ffffff;
+    font-size: 0.9em;
+  }
+
+  .orpheus-flag,
+  nav.external,
+  .scroll-padding,
+  .edit-button,
+  .continue {
+    display: none;
+  }
+
+  .content {
+    max-width: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  p {
+    orphans: 2;
+    widows: 2;
+  }
+
+  blockquote {
+    background: none;
+    border-left: 3px solid #adb5bd;
+    padding: 0 8px;
+    padding-left: 20px;
+    page-break-inside: avoid;
+  }
+
+  code {
+    color: #000000;
+  }
+
+  code:not(pre code) {
+    color: #8f310c;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  pre span {
+    color: inherit !important;
+  }
+
+  h2 {
+    margin-top: 50px;
+  }
+
+  hr {
+    background: #ced4da;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  a[href^="\#"],
+  a[href^="\/"] {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+
+    &::before {
+      content: "[";
+      color: #495057;
+    }
+
+    &::after {
+      content: "]";
+      color: #495057;
+    }
   }
 }

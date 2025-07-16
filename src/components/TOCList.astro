@@ -1,0 +1,44 @@
+---
+
+/**
+ * Adapted from the cpu.land blog, by kognise & Hack Club
+ * Source: /https://github.com/hackclub/putting-the-you-in-cpu/blob/main/src/components/TOCList.astro 
+ */
+interface Heading {
+  depth: number, 
+  slug: string, 
+  text: string
+}
+
+interface HeadingWithChildren extends Heading {
+  children: Heading[]
+}
+
+interface Props {
+  headings: Heading[]
+};
+
+const firstLayer: HeadingWithChildren[] = [];
+let depth = 0;
+
+for (const heading of Astro.props.headings) {
+  if (firstLayer.length === 0 || heading.depth <= depth) {
+    depth = heading.depth
+    firstLayer.push({ ...heading, children: [] })
+  } else if (heading.depth > depth) {
+    firstLayer.at(-1).children.push(heading)
+  }
+}
+
+---
+
+<ul>
+  {firstLayer.map(heading => (
+    <li>
+      <a href={`#${heading.slug}`} data-scrollspy={heading.slug}>
+        {heading.text}
+      </a>
+      {heading.children.length > 0 && <Astro.self headings={heading.children} />}
+    </li>
+  ))}
+</ul>

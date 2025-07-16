@@ -1,18 +1,75 @@
 ---
 import { getCollection, render } from 'astro:content';
-import MarkdownPostLayout from '../../layouts/MarkdownPostLayout.astro';
+import TOCList from '../../components/TOCList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import "../../styles/lessons.css";
 
 export async function getStaticPaths() {
   const lessons = await getCollection('lessons');
   return lessons.map(lesson => ({
     params: { slug: lesson.id }, 
-    props: { lesson },
+    props: { 
+      frontmatter: lesson.data,
+      lesson, 
+     },
   }));
 }
 
-const { lesson } = Astro.props;
-const { Content } = await render(lesson);
+const { frontmatter, lesson } = Astro.props;
+const { Content, headings } = await render(lesson);
 ---
-<MarkdownPostLayout frontmatter={lesson.data}>
-  <Content />
-</MarkdownPostLayout>
+<BaseLayout pageTitle={frontmatter.title}>
+  <nav class='internal'>
+    <h2>Chapter contents</h2>
+    <TOCList headings={headings} />
+
+    <!-- <div class='navigation'>
+      {prevChapter ? (
+        <a href={prevChapter.data.chapter === 0 ? '/' : prevChapter.slug}>
+          <span aria-hidden='true'>&laquo;</span>
+          <span class='sr-only'>Previous:</span>
+          {prevChapter.data.chapter === 0 ? 'Intro' : `Chapter ${prevChapter.data.chapter}`}
+        </a>
+      ) : null}
+      {nextChapter ? (
+        <a href={nextChapter.slug}>
+          <span class='sr-only'>Next:</span>
+          {nextChapter.data.chapter === 0 ? 'Intro' : `Chapter ${nextChapter.data.chapter}`}
+          <span aria-hidden='true'>&raquo;</span>
+        </a>
+      ) : null}
+    </div> -->
+  </nav>
+  
+  <main>
+    <header class="content">
+      <h1 id='intro'>
+        <!-- <div class='chapter'>Chapter {frontmatter.number}<span class='sr-only'>:</span></div> -->
+        <div class='title'>
+          {frontmatter.title}
+          <!-- <EditButton chapterSlug={chapter.slug} /> -->
+        </div>
+      </h1></header>
+
+    <div class="content">
+      <p>{frontmatter.pubDate.toLocaleDateString()}</p>
+      <p><em>{frontmatter.description}</em></p>
+      <p>Written by: {frontmatter.author}</p>
+      <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+    </div>
+
+    <div class="content">
+      <h1>📊 Slides</h1>
+      <h1>🎯 Objectives</h1>
+      <p>In today's class, we'll learn about:</p>
+      <ul>
+        {frontmatter.objectives.map((objective) => (
+          <li>{objective}</li>
+        ))}
+      </ul>
+      <Content />
+    </div>
+
+  </main>
+</BaseLayout>

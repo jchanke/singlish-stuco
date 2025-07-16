@@ -1,0 +1,125 @@
+/**
+ * global styling for tables, imported by ./global.css.
+ * generated with help from Claude 4 Sonnet.
+ * 
+ */
+
+table {
+  --thick-border: 2px solid #dee2e6;
+  --thin-border: 1px solid #dee2e6;
+
+  --background: #fafafa;
+  --background-hover: #f0f0f0;
+
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table thead {
+  background-color: var(--background);
+  border-bottom: var(--thick-border);
+}
+
+table th {
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-right: var(--thin-border);
+}
+
+table th:last-child {
+  border-right: none;
+}
+
+table td {
+  padding: 12px 15px;
+  border-bottom: var(--thin-border);
+  border-right: var(--thin-border);
+  vertical-align: top;
+}
+
+table td:last-child {
+  border-right: none;
+}
+
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table tbody tr:hover {
+  background-color: var(--background-hover);
+}
+
+/**
+ * special styles for items within tables; for more info see the 
+ * remarkYamlTable plugin: 
+ *
+ *   ../utils/remarkYamlTable.js 
+ */
+table .numbered-item {
+  margin: 0.5rem 0;
+  padding-left: 0rem; /* 1rem; */
+}
+
+table .dialogue-speaker {
+  font-weight: 600;
+  color: #0066cc;
+  margin: 0.25rem 0;
+}
+
+table .bullet-item {
+  margin: 0.25rem 0;
+  padding-left: 1rem;
+}
+
+table .text-line {
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+/* Dark mode styles */
+/* html.dark table {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+html.dark table thead {
+  background-color: #2d2d2d;
+  border-bottom-color: #444;
+}
+
+html.dark table th {
+  color: #fff;
+  border-right-color: #444;
+}
+
+html.dark table td {
+  border-bottom-color: #444;
+  border-right-color: #444;
+}
+
+html.dark table tbody tr:hover {
+  background-color: #2d2d2d;
+}
+
+html.dark table .dialogue-speaker {
+  color: #66b3ff;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  table {
+    font-size: 0.8rem;
+  }
+
+  table th,
+  table td {
+    padding: 8px 10px;
+  }
+}
