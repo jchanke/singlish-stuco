@@ -15,14 +15,8 @@ interface ScheduleTableProps {
 }
 
 const ScheduleTable = ({ lessons }: ScheduleTableProps) => {
-  const style = {
-    width: "min(200vw, 75vw)",
-    marginLeft: "50%",
-    transform: "translateX(-50%)",
-  };
-
   return (
-    <div className="schedule-container" style={style}>
+    <div className="schedule-container">
       <table>
         <thead>
           <tr className="font-semibold italic font-display text-lg">

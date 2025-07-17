@@ -31,12 +31,33 @@ body {
   margin: 0;
 }
 
+main {
+  /* for all sites */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* for non-lesson pages (that has its own styling) */
+  padding-top: 30px; /* ...so it's not hidden by the external navbar */
+}
+
 img,
 video,
 iframe {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* give enough space on the top, so heading isn't covered by navbar */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  scroll-margin-top: 2em;
 }
 
 h1 {

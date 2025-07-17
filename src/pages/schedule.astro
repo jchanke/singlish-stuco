@@ -9,5 +9,7 @@ const allLessons = await getCollection("lessons")
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <ScheduleTable lessons={allLessons.sort((a, b) => a.data.week - b.data.week)} />
+  <main>
+    <ScheduleTable lessons={allLessons.sort((a, b) => a.data.week - b.data.week)} />
+  </main>
 </BaseLayout>
