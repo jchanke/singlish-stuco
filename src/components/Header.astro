@@ -15,7 +15,7 @@
       <a href="/schedule">Schedule</a>
     </li>
     <li>
-      <a href="/pdf/syllabus-s25.pdf">Syllabus</a>
+      <a href="/pdf/syllabus-s25.pdf">Syllabus <i class="fa-solid fa-arrow-up-right-from-square"/></a>
     </li>
     <li>
       <a href="/blog/">Blog</a>
@@ -40,8 +40,8 @@
   const externalNav: HTMLElement = document.querySelector('#external-nav')!
 
   // Configuration thresholds for showing/hiding behavior (in pixels)
-  const showThreshold = 80  // How far to scroll up before showing nav
-  const hideThreshold = 80  // How far to scroll down before hiding nav
+  const showThreshold = 40 // How far to scroll up before showing nav
+  const hideThreshold = 40  // How far to scroll down before hiding nav
 
   // Track current visibility state of the navigation
   let visible = true
