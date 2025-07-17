@@ -48,6 +48,10 @@ h6 {
     content: "🙋 "; /* person raising hand */
   }
 
+  &[id*="homework"]::before {
+    content: "📝 "; /* memo */
+  }
+
   &[id*="to-do"]::before {
     content: "🔖 "; /* bookmark */
   }
