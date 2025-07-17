@@ -1,7 +1,7 @@
 /**
  * heading-emojis.css -- add an emoji before certain headings.
  * 
- * Any heading (h1-h6) can be styled. the following substrings are supported:
+ * Any heading (h1-h6) can be styled. The following substrings are supported:
  *  - slides
  *  - objectives
  *  - notes
@@ -57,6 +57,37 @@ h6 {
   }
 
   &[id*="references"]::before {
+    content: "📚 "; /* books */
+  }
+}
+
+/* apply the same to TOC list items */
+nav.internal {
+  ul li a[href*="slides"]::before {
+    content: "📊 "; /* bar chart */
+  }
+
+  ul li a[href*="objectives"]::before {
+    content: "🎯 "; /* bullseye */
+  }
+
+  ul li a[href*="notes"]::before {
+    content: "🗒️ "; /* spiral notepad emoji */
+  }
+
+  ul li a[href*="class-activity"]::before {
+    content: "🙋 "; /* person raising hand */
+  }
+
+  ul li a[href*="homework"]::before {
+    content: "📝 "; /* memo */
+  }
+
+  ul li a[href*="to-do"]::before {
+    content: "🔖 "; /* bookmark */
+  }
+
+  ul li a[href*="references"]::before {
     content: "📚 "; /* books */
   }
 }
