@@ -20,7 +20,7 @@ const blog = defineCollection({
   }),
 });
 
-const lessonSchema = z.object({
+export const lessonSchema = z.object({
   title: z.string(),
   week: z.number().min(0),
   pubDate: z.date(),
