@@ -1,0 +1,58 @@
+/**
+ * heading-emojis.css -- add an emoji before certain headings.
+ * 
+ * Any heading (h1-h6) can be styled. the following substrings are supported:
+ *  - slides
+ *  - objectives
+ *  - notes
+ *  - class-activity
+ *  - references
+ * 
+ * For example, a heading entitled
+ *   To-dos (after class)
+ * 
+ * will have a slug generated
+ *   to-dos-after-class
+ *
+ * which wil match with the 
+ *   to-do
+ * 
+ * substring.
+ *
+ * The upshot: 
+ *  - helps with consistency
+ *  - no need to include emojis explicitly, resulting in cleaner URL slugs
+ *
+ * This file is imported in "../lessons.css", so it's applied to all lessons.
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &[id*="slides"]::before {
+    content: "📊 "; /* bar chart */
+  }
+
+  &[id*="objectives"]::before {
+    content: "🎯 "; /* bullseye */
+  }
+
+  &[id*="notes"]::before {
+    content: "🗒️ "; /* spiral notepad emoji */
+  }
+
+  &[id*="class-activity"]::before {
+    content: "🙋 "; /* person raising hand */
+  }
+
+  &[id*="to-do"]::before {
+    content: "🔖 "; /* bookmark */
+  }
+
+  &[id*="references"]::before {
+    content: "📚 "; /* books */
+  }
+}
