@@ -5,6 +5,7 @@
  * This stylesheet applies only to lessons, and is imported in
  *   pages/lessons/[...slug].astro
  */
+@import "./heading-emojis.css";
 
 :root {
   --toc-width: 300px;
@@ -105,9 +106,9 @@ nav.internal {
     display: block;
     padding: 0 4px;
 
-    &.scrollspy-active {
+    /* &.scrollspy-active {
       --color: #343a40;
-    }
+    } */
 
     &:hover {
       --color: #000000;

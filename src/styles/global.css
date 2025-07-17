@@ -132,7 +132,7 @@ a {
   margin: 40px auto;
 } */
 
-/* .scroll-padding {
+.scroll-padding {
   padding-top: 60vh;
   padding-bottom: 20px;
   font-size: 0.9em;
@@ -159,7 +159,7 @@ a {
   & hr {
     margin: 16px 0;
   }
-} */
+}
 
 .content {
   width: 100%;
@@ -287,7 +287,7 @@ nav.external {
   }
 }
 
-/* background color of seleected text */
+/* background color of selected text */
 ::selection {
   background: #adb5bd9b;
 }

@@ -19,14 +19,14 @@ interface Props {
 };
 
 const firstLayer: HeadingWithChildren[] = [];
-let depth = 0;
+let depth = 6;
 
 for (const heading of Astro.props.headings) {
   if (firstLayer.length === 0 || heading.depth <= depth) {
     depth = heading.depth
     firstLayer.push({ ...heading, children: [] })
   } else if (heading.depth > depth) {
-    firstLayer.at(-1).children.push(heading)
+    firstLayer.at(-1)!.children.push(heading)
   }
 }
 
