@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import TOCList from '../../components/TOCList.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+import ScrollPadding from '../../components/ScrollPadding.astro';
 import "../../styles/lessons.css";
 
 export async function getStaticPaths() {
@@ -18,7 +19,15 @@ export async function getStaticPaths() {
 
 const { frontmatter, lesson } = Astro.props;
 const { Content, headings } = await render(lesson);
+
+/* push these two headers to the front -- see below */
+const initialHeaders = [
+  { depth: 1, slug: "slides", text: "Slides" }, 
+  { depth: 1, slug: "objectives", text: "Objectives" },
+]
+headings.unshift(...initialHeaders)
 ---
+
 <BaseLayout pageTitle={frontmatter.title}>
   <nav class='internal'>
     <h2>Chapter contents</h2>
@@ -60,8 +69,10 @@ const { Content, headings } = await render(lesson);
     </div>
 
     <div class="content">
-      <h1>📊 Slides</h1>
-      <h1>🎯 Objectives</h1>
+      <h1 id="slides">Slides</h1>
+      <p>You can access the slides for today's lesson <a href={frontmatter.slides}>here</a>.</p>
+
+      <h1 id="objectives">Objectives</h1>
       <p>In today's class, we'll learn about:</p>
       <ul>
         {frontmatter.objectives.map((objective) => (
@@ -71,5 +82,6 @@ const { Content, headings } = await render(lesson);
       <Content />
     </div>
 
+    <ScrollPadding />
   </main>
 </BaseLayout>
