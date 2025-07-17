@@ -26,7 +26,15 @@ const ScheduleTable = ({ lessons }: ScheduleTableProps) => {
       <table>
         <thead>
           <tr className="font-semibold italic font-display text-lg">
-            <th>Objectives</th>
+            <th>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <div>Objectives</div>
+                <a href="#/" id="toggleAllButton">
+                  show all ▼
+                </a>
+              </div>
+            </th>
+
             <th>Lesson</th>
             <th>Slides</th>
             <th>Homework</th>
