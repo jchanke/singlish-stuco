@@ -54,7 +54,7 @@ const ScheduleTable = ({ lessons }: ScheduleTableProps) => {
                   </div>
                 </td>
                 {/* lesson */}
-                <td>
+                <td style={{ whiteSpace: "nowrap" }}>
                   <a href={`/lessons/${lesson.id}`}>
                     lesson {frontmatter.week}
                   </a>
