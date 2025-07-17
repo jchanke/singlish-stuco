@@ -109,7 +109,8 @@ a {
   margin: 40px 0;
 } */
 
-/* .sr-only {
+/* for screenreaders only; hide from view */
+.sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -119,7 +120,7 @@ a {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
-} */
+}
 
 /* .big {
   --max-width: 1300px;

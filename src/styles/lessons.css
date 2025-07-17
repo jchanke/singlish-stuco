@@ -115,6 +115,7 @@ nav.internal {
     }
   }
 
+  /* for the '« previous week' and 'next week »' buttons */
   & .navigation {
     display: flex;
     flex-direction: row;
